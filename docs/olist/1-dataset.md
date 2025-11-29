@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # 1. Dataset Introduction
 
 ## Conceptual Overview
@@ -22,28 +26,28 @@ After a customer purchases the product from Olist Store a seller gets notified t
 
 You begin with read access to the following:
 
-- **`olist_orders_dataset`** (central fact table)
+- **`orders`** (central fact table)
 
   - `order_id` — unique order key
   - `order_status` — delivered / shipped / canceled / etc.
   - `order_estimated_delivery_date` — when Olist promised delivery
   - `order_delivered_customer_date` — when the customer actually got it
 
-- **`olist_order_reviews_dataset`**
+- **`order_reviews`**
 
   - `order_id`
   - `review_score` — 1 to 5 stars
 
-- **`olist_customers_dataset`**
+- **`customers`**
 
   - `customer_id`
   - `customer_state` — two-letter state code (e.g., RJ, SP, MG)
 
 Later levels may optionally touch:
 
-- `olist_order_items_dataset` (each line item in an order)
-- `olist_sellers_dataset` (seller info)
-- `olist_geolocation_dataset` (ZIP → lat/long)
+- `order_items` (each line item in an order)
+- `sellers` (seller info)
+- `geolocation` (ZIP → lat/long)
 
 :::tip
 **Rule:** For this quest, you **must** always filter on customers in `customer_state = 'RJ'`. That’s your battlefield.

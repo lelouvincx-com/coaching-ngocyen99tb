@@ -1,0 +1,8 @@
+{
+    "label": "2. Missions",
+    "position": 3,
+    "link": {
+        "type": "generated-index",
+        "description": "List of missions to complete in the project."
+    }
+}

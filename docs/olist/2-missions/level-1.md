@@ -1,21 +1,4 @@
-# 2. SQL Missions
-
-## Level 0 - Prepare Your Environment
-
-Before diving into the missions, ensure you have access to the Olist database. Set up your SQL environment and familiarize yourself with the following datasets.
-
-Choose either:
-
-- RunSQL
-- Dbeaver
-
-The data is available at: https://public.lelouvincx.com/brazilian_ecommerce.duckdb
-
-**Goal**: Ready your SQL environment by querying `SELECT * FROM olist_orders_dataset` to confirm access.
-
-![](./assets/sql-ready.png)
-
-## Level 1 – “RJ Cartographer”
+# Level 1: SQL Exploration
 
 _Objective: Find and understand your dataset._
 
@@ -24,8 +7,9 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 ---
 
-### Task 1: Know Your Audience (Simple Filtering)
+## Task 1.1: Know Your Audience (Simple Filtering)
 
+:::note Question
 **Business Value:** Before we analyze behavior, we need to know the size of our cohort in Rio de Janeiro.
 
 - **Goal:** List all customer profiles located in the state of Rio de Janeiro ('RJ').
@@ -37,18 +21,17 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 <details>
 <summary>💡 Hint</summary>
 
-- Query the `olist_customers_dataset`.
-- Filter where `customer_state` is 'RJ'.
-- Select `customer_id` and `customer_city`.
+- Which table contains customer location information?
+- What column would tell you the state where a customer lives?
 
 </details>
+:::
 
-<details>
-<summary>Answer</summary>
-</details>
+---
 
-### Task 2: The Transaction History (Basic Join)
+## Task 1.2: The Transaction History (Basic Join)
 
+:::note Question
 **Business Value:** A customer profile is useless without their purchase history. We need to attach orders to these people.
 
 - **Goal:** Join the Orders table to the Customers table to find every order placed by an RJ customer.
@@ -60,18 +43,18 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 <details>
 <summary>💡 Hint</summary>
 
-- `INNER JOIN` `olist_orders_dataset` with `olist_customers_dataset`.
-- Join key: `customer_id`.
-- Filter for `customer_state = 'RJ'`.
+- You need to combine customer and order information
+- What field connects customers to their orders?
+- Build upon your previous query from Task 1
 
 </details>
+:::
 
-<details>
-<summary>Answer</summary>
-</details>
+---
 
-### Task 3: The Timeline (Date Handling)
+## Task 1.3: The Timeline (Date Handling)
 
+:::note Question
 **Business Value:** The VP needs to know if this is a recent problem or a historical one. We need to establish the date range of our data.
 
 - **Goal:** Find the date range of all orders placed in RJ.
@@ -84,18 +67,18 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 <details>
 <summary>💡 Hint</summary>
 
-- Use the joined dataset from Task 2.
-- Use `MIN()` and `MAX()` functions on `order_purchase_timestamp`.
-- _Bonus:_ Cast the timestamp to a `DATE` format to make it readable.
+- Think about aggregate functions for finding earliest and latest values
+- Which column contains the purchase date/time?
+- Consider formatting the output for better readability
 
 </details>
+:::
 
-<details>
-<summary>Answer</summary>
-</details>
+---
 
-### Task 4: The Funnel Audit (Aggregation & Nulls)
+## Task 1.4: The Funnel Audit (Aggregation & Nulls)
 
+:::note Question
 **Business Value:** Not all orders make it to the customer. We need to see how many orders were actually delivered vs. cancelled or unavailable.
 
 - **Goal:** Count the number of orders per `order_status` for RJ customers.
@@ -108,18 +91,18 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 <details>
 <summary>💡 Hint</summary>
 
-- Use `GROUP BY order_status`.
-- `COUNT` the order IDs.
-- Order the results by the count in descending order.
+- You need to count orders grouped by their status
+- What SQL clause helps you organize data into categories?
+- How can you sort the results to see the most common statuses first?
 
 </details>
+:::
 
-<details>
-<summary>Answer</summary>
-</details>
+---
 
-### Task 5: The "Pulse Check" (3-Table Join)
+## Task 1.5: The "Pulse Check" (3-Table Join)
 
+:::note Question
 **Business Value:** Now we need the "Voice of the Customer." We need to see the average star rating for these specific orders.
 
 - **Goal:** Calculate the average review score for all **delivered** orders in RJ.
@@ -131,13 +114,11 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 <details>
 <summary>💡 Hint</summary>
 
-- Join `olist_order_reviews_dataset` to your existing Orders + Customers query.
-- **Filter 1:** `customer_state = 'RJ'`
-- **Filter 2:** `order_status = 'delivered'`
-- Use `AVG(review_score)`.
+- You need to bring in review data from another table
+- What aggregate function calculates averages?
+- Remember to filter for both RJ customers and delivered orders only
 
 </details>
+:::
 
-<details>
-<summary>Answer</summary>
-</details>
+---
