@@ -18,6 +18,8 @@ After a customer purchases the product from Olist Store a seller gets notified t
 
 <iframe  allowfullscreen width="100%" height="600" src="https://dbdocs.io/embed/3c687c0abb1040e2f9be3a629c7da92e/170abe8e57ab4432b2a099c878f650be"> </iframe>
 
+**ERD link**: https://dbdocs.io/lelouvincx/brazillian-ecommerce
+
 You begin with read access to the following:
 
 - **`olist_orders_dataset`** (central fact table)
