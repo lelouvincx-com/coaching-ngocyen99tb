@@ -24,7 +24,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 ---
 
-### Exercise 1: Know Your Audience (Simple Filtering)
+### Task 1: Know Your Audience (Simple Filtering)
 
 **Business Value:** Before we analyze behavior, we need to know the size of our cohort in Rio de Janeiro.
 
@@ -43,7 +43,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 
-### Exercise 2: The Transaction History (Basic Join)
+### Task 2: The Transaction History (Basic Join)
 
 **Business Value:** A customer profile is useless without their purchase history. We need to attach orders to these people.
 
@@ -62,7 +62,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 
-### Exercise 3: The Timeline (Date Handling)
+### Task 3: The Timeline (Date Handling)
 
 **Business Value:** The VP needs to know if this is a recent problem or a historical one. We need to establish the date range of our data.
 
@@ -76,13 +76,13 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 <details>
 <summary>💡 Hint</summary>
 
-- Use the joined dataset from Exercise 2.
+- Use the joined dataset from Task 2.
 - Use `MIN()` and `MAX()` functions on `order_purchase_timestamp`.
 - _Bonus:_ Cast the timestamp to a `DATE` format to make it readable.
 
 </details>
 
-### Exercise 4: The Funnel Audit (Aggregation & Nulls)
+### Task 4: The Funnel Audit (Aggregation & Nulls)
 
 **Business Value:** Not all orders make it to the customer. We need to see how many orders were actually delivered vs. cancelled or unavailable.
 
@@ -102,7 +102,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 
-### Exercise 5: The "Pulse Check" (3-Table Join)
+### Task 5: The "Pulse Check" (3-Table Join)
 
 **Business Value:** Now we need the "Voice of the Customer." We need to see the average star rating for these specific orders.
 
