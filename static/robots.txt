@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow search results pages
+Disallow: /search
+
+# Disallow tag pages if you don't want them indexed
+# Disallow: /tags/
+
+# Allow all documentation
+Allow: /docs/
+
+# Sitemap location
+Sitemap: https://ngocyen99tb.lelouvincx.com/sitemap.xml
