@@ -43,6 +43,10 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 
+<details>
+<summary>Answer</summary>
+</details>
+
 ### Task 2: The Transaction History (Basic Join)
 
 **Business Value:** A customer profile is useless without their purchase history. We need to attach orders to these people.
@@ -60,6 +64,10 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 - Join key: `customer_id`.
 - Filter for `customer_state = 'RJ'`.
 
+</details>
+
+<details>
+<summary>Answer</summary>
 </details>
 
 ### Task 3: The Timeline (Date Handling)
@@ -82,6 +90,10 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 
+<details>
+<summary>Answer</summary>
+</details>
+
 ### Task 4: The Funnel Audit (Aggregation & Nulls)
 
 **Business Value:** Not all orders make it to the customer. We need to see how many orders were actually delivered vs. cancelled or unavailable.
@@ -102,6 +114,10 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 
+<details>
+<summary>Answer</summary>
+</details>
+
 ### Task 5: The "Pulse Check" (3-Table Join)
 
 **Business Value:** Now we need the "Voice of the Customer." We need to see the average star rating for these specific orders.
@@ -120,4 +136,8 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 - **Filter 2:** `order_status = 'delivered'`
 - Use `AVG(review_score)`.
 
+</details>
+
+<details>
+<summary>Answer</summary>
 </details>
