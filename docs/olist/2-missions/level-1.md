@@ -26,6 +26,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 :::
+![](../assets/results3.png)
 
 ---
 
