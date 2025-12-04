@@ -6,8 +6,8 @@ Before diving into the missions, ensure you have access to the Olist database. S
 
 Choose either:
 
-- RunSQL
-- Dbeaver
+- [RunSQL](https://runsql.com/r)
+- [Dbeaver](https://dbeaver.io/download/)
 
 The data is available at: https://public.lelouvincx.com/brazilian_ecommerce.duckdb
 
