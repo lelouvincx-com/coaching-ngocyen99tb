@@ -26,6 +26,17 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 </details>
 :::
+
+- **Question 1: List all customer profiles located in the state of Rio de Janeiro ('RJ')**
+```sql 
+SELECT *
+FROM customers
+WHERE customer_state = 'RJ';
+![](../assets/results1.png)
+
+- **Question 2: How many unique customers do we have in Rio de Janeiro?**
+
+
 ![](../assets/results3.png)
 
 ---
