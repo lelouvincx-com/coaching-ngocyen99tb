@@ -28,15 +28,35 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 :::
 
 - **Question 1: List all customer profiles located in the state of Rio de Janeiro ('RJ')**
+
 ```sql 
 SELECT *
 FROM customers
 WHERE customer_state = 'RJ';
+```
+
 ![](../assets/results1.png)
 
 - **Question 2: How many unique customers do we have in Rio de Janeiro?**
 
+```sql
+SELECT COUNT(DISTINCT customer_id) AS rj_customers
+FROM customers
+WHERE customer_state = 'RJ';
+```
 
+![](../assets/results2.png)
+
+- **Question 3: Besides the city 'rio de janeiro', what other cities appear in this list?**
+```sql
+SELECT
+  customer_city,
+  COUNT(DISTINCT customer_id) AS n_customers
+FROM customers
+WHERE customer_state = 'RJ'
+GROUP BY customer_city
+ORDER BY n_customers DESC, customer_city;
+```
 ![](../assets/results3.png)
 
 ---
@@ -62,6 +82,25 @@ WHERE customer_state = 'RJ';
 </details>
 :::
 
+-**Question 1: Join the Orders table to the Customers table to find every order placed by an RJ customer:**
+```sql
+SELECT
+  c.customer_id,
+  c.customer_city,
+  c.customer_state,
+  o.order_id,
+  o.order_status,
+  o.order_purchase_timestamp
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE c.customer_state = 'RJ';
+```
+- **Question 2:Does the row count match your previous query, or is it different? Why?**
+> Số lượng row khác nhau giữa task 1.2 và task 1.1( ở 1.2 lớn hơn) do ở 1.1 lấy kết quả theo unique customers, tức mỗi hàng tương ứng với 1 KH; còn task 1.2 lấy tất cả các đơn hàng của KH sống ở bang RJ, 1 dòng tương ứng với 1 đơn hàng do đó 1 KH có thể có nhiều đơn hàng => số rows nhiều hơn task 1.1
+
+- **Question 3:"Can you see the order_status column in the results?"**
+> Cột order_status xuất hiện vì sau khi join bảng Orders với bảng Customers, tất cả thông tin đơn hàng liên quan đến mỗi khách hàng ở RJ đều được đưa vào kết quả.
 ---
 
 ## Task 1.3: The Timeline (Date Handling)
