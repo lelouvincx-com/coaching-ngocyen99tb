@@ -96,6 +96,8 @@ JOIN orders o
   ON c.customer_id = o.customer_id
 WHERE c.customer_state = 'RJ';
 ```
+![](../assets/results1.2.1.png)
+
 - **Question 2:Does the row count match your previous query, or is it different? Why?**
 > Số lượng row khác nhau giữa task 1.2 và task 1.1( ở 1.2 lớn hơn) do ở 1.1 lấy kết quả theo unique customers, tức mỗi hàng tương ứng với 1 KH; còn task 1.2 lấy tất cả các đơn hàng của KH sống ở bang RJ, 1 dòng tương ứng với 1 đơn hàng do đó 1 KH có thể có nhiều đơn hàng => số rows nhiều hơn task 1.1
 
@@ -124,6 +126,8 @@ WHERE c.customer_state = 'RJ';
 
 </details>
 :::
+
+- **Question 1: Find the date range of all orders placed in RJ**
 
 ---
 
