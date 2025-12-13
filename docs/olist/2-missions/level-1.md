@@ -128,7 +128,7 @@ WHERE c.customer_state = 'RJ';
 :::
 
 - **Question 1: “What is the date of the very first order in RJ?”**
-::: Hướng giải quyết
+Hướng giải quyết
 - JOIN bảng orders với customers dựa trên customer_id
 - Chỉ giữ khách có customer_state = 'RJ'
 - Lấy giá trị nhỏ nhất (MIN) của order_purchase_timestamp
@@ -144,7 +144,7 @@ WHERE c.customer_state = 'RJ';
 ![](../assets/results1.3.1.png)
 
 - **Question 2: “When was the last order placed?”**
-::: Hướng giải quyết
+Hướng giải quyết
 - JOIN như câu trên
 - Lấy giá trị lớn nhất (MAX) của order_purchase_timestamp
 
@@ -187,7 +187,7 @@ WHERE c.customer_state = 'RJ';
 :::
 
 - **Question 1: “How many orders in RJ were canceled?”**
-::: Hướng giải quyết:
+Hướng giải quyết:
 - JOIN customers (c) với orders (o) qua customer_id
 - Lọc khách hàng ở bang RJ: customer_state = 'RJ'
 - Lọc thêm trạng thái đơn hàng: order_status = 'canceled'
@@ -204,7 +204,7 @@ WHERE c.customer_state = 'RJ'
 ![](../assets/results1.4.1.png)
 
 - **Question 2: “How many were delivered?”**
-::: Hướng giải quyết:
+Hướng giải quyết:
 - JOIN customers (c) với orders (o) qua customer_id
 - Thay điều kiện trạng thái thành order_status = 'delivered'
 
@@ -220,7 +220,7 @@ WHERE c.customer_state = 'RJ'
 ![](../assets/results1.4.2.png)
 
 - **Question 3: “Are there any statuses where the count is surprisingly high?”**
-::: Hướng giải quyết:
+Hướng giải quyết:
 - JOIN bảng customers(c) với orders(o) bằng customer_id
 - Lọc khách sống ở RJ: customer_state = 'RJ'
 - Group theo order_status.
@@ -263,7 +263,7 @@ ORDER BY order_count DESC;
 :::
 
 - **Question 1: "What is the average score for RJ? (Is it below 4.0?)"**
-::: Hướng giải quyết:
+Hướng giải quyết:
 - Cần JOIN 3 bảng:
  1.customers → để lọc khách ở RJ
  2.orders → để chỉ lấy đơn có order_status = 'delivered'
