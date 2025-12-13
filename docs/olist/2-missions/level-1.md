@@ -127,8 +127,41 @@ WHERE c.customer_state = 'RJ';
 </details>
 :::
 
-- **Question 1: Find the date range of all orders placed in RJ**
+- **Question 1: “What is the date of the very first order in RJ?”**
+::: Hướng giải quyết
+- JOIN bảng orders với customers dựa trên customer_id
+- Chỉ giữ khách có customer_state = 'RJ'
+- Lấy giá trị nhỏ nhất (MIN) của order_purchase_timestamp
 
+```sql
+SELECT
+  DATE(MIN(o.order_purchase_timestamp)) AS first_order_date
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE c.customer_state = 'RJ';
+```
+![](../assets/results1.3.1.png)
+
+- **Question 2: “When was the last order placed?”**
+::: Hướng giải quyết
+- JOIN như câu trên
+- Lấy giá trị lớn nhất (MAX) của order_purchase_timestamp
+
+```sql
+SELECT
+  DATE(MAX(o.order_purchase_timestamp)) AS last_order_date
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE c.customer_state = 'RJ';
+```
+![](../assets/results1.3.2.png)
+
+- **Question 3: "Does this cover the Black Friday period?"**
+> Có, khoảng thời gian này bao gồm Black Friday của năm 2016 và 2017
+
+- **
 ---
 
 ## Task 1.4: The Funnel Audit (Aggregation & Nulls)
@@ -153,6 +186,59 @@ WHERE c.customer_state = 'RJ';
 </details>
 :::
 
+- **Question 1: “How many orders in RJ were canceled?”**
+::: Hướng giải quyết:
+- JOIN customers (c) với orders (o) qua customer_id
+- Lọc khách hàng ở bang RJ: customer_state = 'RJ'
+- Lọc thêm trạng thái đơn hàng: order_status = 'canceled'
+
+```sql
+SELECT
+  COUNT(*) AS canceled_orders_in_RJ
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE c.customer_state = 'RJ'
+  AND o.order_status = 'canceled';
+```
+![](../assets/results1.4.1.png)
+
+- **Question 2: “How many were delivered?”**
+::: Hướng giải quyết:
+- JOIN customers (c) với orders (o) qua customer_id
+- Thay điều kiện trạng thái thành order_status = 'delivered'
+
+```sql
+SELECT
+  COUNT(*) AS delivered_orders_in_RJ
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE c.customer_state = 'RJ'
+  AND o.order_status = 'delivered';
+```
+![](../assets/results1.4.2.png)
+
+- **Question 3: “Are there any statuses where the count is surprisingly high?”**
+::: Hướng giải quyết:
+- JOIN bảng customers(c) với orders(o) bằng customer_id
+- Lọc khách sống ở RJ: customer_state = 'RJ'
+- Group theo order_status.
+- Sắp xếp giảm dần để xem trạng thái nào bất thường (quá cao hoặc quá thấp).
+
+```sql
+SELECT
+  o.order_status,
+  COUNT(*) AS order_count
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE c.customer_state = 'RJ'
+GROUP BY o.order_status
+ORDER BY order_count DESC;
+```
+![](../assets/results1.4.3.png)
+
 ---
 
 ## Task 1.5: The "Pulse Check" (3-Table Join)
@@ -175,5 +261,41 @@ WHERE c.customer_state = 'RJ';
 
 </details>
 :::
+
+- **Question 1: "What is the average score for RJ? (Is it below 4.0?)"**
+::: Hướng giải quyết:
+- Cần JOIN 3 bảng:
+ 1.customers → để lọc khách ở RJ
+ 2.orders → để chỉ lấy đơn có order_status = 'delivered'
+ 3.order_reviews → để lấy review_score
+- JOIN qua khóa:
+ - customers.customer_id = orders.customer_id
+ - orders.order_id = order_reviews.order_id
+- Lấy trung bình điểm review: AVG(review_score)
+
+```sql
+SELECT
+  AVG(r.review_score) AS avg_review_score_RJ
+FROM customers c
+JOIN orders o
+  ON c.customer_id = o.customer_id
+JOIN order_reviews r
+  ON o.order_id = r.order_id
+WHERE c.customer_state = 'RJ'
+  AND o.order_status = 'delivered';
+```
+
+![](../assets/results1.5.1.png)
+
+- **Question 2: “How does this compare if you remove the 'RJ' filter and look at the whole country?”**
+```sql
+SELECT
+  AVG(r.review_score) AS avg_review_score_brazil
+FROM orders o
+JOIN order_reviews r
+  ON o.order_id = r.order_id
+WHERE o.order_status = 'delivered';
+```
+![](../assets/results1.5.2.png)
 
 ---
