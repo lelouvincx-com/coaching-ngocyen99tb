@@ -21,6 +21,20 @@ Think of Git as a save point in a video game. Before you fight a boss (run a com
 
 ## Basic commands
 
+To download commits:
+
+```bash
+git pull --rebase
+```
+
+To upload commits:
+
+```bash
+git add .
+git commit -m "your message"
+git push
+```
+
 Refer to https://ubunchuu.com/docs/15DFWT/basic-git
 
 ![](./maybe-this-is-a-git-repost-v0-qfnbpvj0xhla1.webp)
