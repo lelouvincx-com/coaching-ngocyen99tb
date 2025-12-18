@@ -7,7 +7,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 ---
 
-## Task 1.1: Know Your Audience (Simple Filtering)
+## Problem 1.1: Know Your Audience (Simple Filtering)
 
 :::note Question
 **Business Value:** Before we analyze behavior, we need to know the size of our cohort in Rio de Janeiro.
@@ -29,7 +29,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 - **Question 1: List all customer profiles located in the state of Rio de Janeiro ('RJ')**
 
-```sql 
+```sql
 SELECT *
 FROM customers
 WHERE customer_state = 'RJ';
@@ -48,6 +48,7 @@ WHERE customer_state = 'RJ';
 ![](../assets/results2.png)
 
 - **Question 3: Besides the city 'rio de janeiro', what other cities appear in this list?**
+
 ```sql
 SELECT
   customer_city,
@@ -57,11 +58,12 @@ WHERE customer_state = 'RJ'
 GROUP BY customer_city
 ORDER BY n_customers DESC, customer_city;
 ```
+
 ![](../assets/results3.png)
 
 ---
 
-## Task 1.2: The Transaction History (Basic Join)
+## Problem 1.2: The Transaction History (Basic Join)
 
 :::note Question
 **Business Value:** A customer profile is useless without their purchase history. We need to attach orders to these people.
@@ -77,12 +79,13 @@ ORDER BY n_customers DESC, customer_city;
 
 - You need to combine customer and order information
 - What field connects customers to their orders?
-- Build upon your previous query from Task 1
+- Build upon your previous query from Problem 1
 
 </details>
 :::
 
 -**Question 1: Join the Orders table to the Customers table to find every order placed by an RJ customer:**
+
 ```sql
 SELECT
   c.customer_id,
@@ -96,16 +99,19 @@ JOIN orders o
   ON c.customer_id = o.customer_id
 WHERE c.customer_state = 'RJ';
 ```
+
 ![](../assets/results1.2.1.png)
 
 - **Question 2:Does the row count match your previous query, or is it different? Why?**
-> Số lượng row khác nhau giữa task 1.2 và task 1.1( ở 1.2 lớn hơn) do ở 1.1 lấy kết quả theo unique customers, tức mỗi hàng tương ứng với 1 KH; còn task 1.2 lấy tất cả các đơn hàng của KH sống ở bang RJ, 1 dòng tương ứng với 1 đơn hàng do đó 1 KH có thể có nhiều đơn hàng => số rows nhiều hơn task 1.1
+
+  > Số lượng row khác nhau giữa problem 1.2 và problem 1.1( ở 1.2 lớn hơn) do ở 1.1 lấy kết quả theo unique customers, tức mỗi hàng tương ứng với 1 KH; còn problem 1.2 lấy tất cả các đơn hàng của KH sống ở bang RJ, 1 dòng tương ứng với 1 đơn hàng do đó 1 KH có thể có nhiều đơn hàng => số rows nhiều hơn problem 1.1
 
 - **Question 3:"Can you see the order_status column in the results?"**
-> Cột order_status xuất hiện vì sau khi join bảng Orders với bảng Customers, tất cả thông tin đơn hàng liên quan đến mỗi khách hàng ở RJ đều được đưa vào kết quả.
+  > Cột order_status xuất hiện vì sau khi join bảng Orders với bảng Customers, tất cả thông tin đơn hàng liên quan đến mỗi khách hàng ở RJ đều được đưa vào kết quả.
+
 ---
 
-## Task 1.3: The Timeline (Date Handling)
+## Problem 1.3: The Timeline (Date Handling)
 
 :::note Question
 **Business Value:** The VP needs to know if this is a recent problem or a historical one. We need to establish the date range of our data.
@@ -128,7 +134,7 @@ WHERE c.customer_state = 'RJ';
 :::
 
 - **Question 1: “What is the date of the very first order in RJ?”**
-Hướng giải quyết
+  Hướng giải quyết
 - JOIN bảng orders với customers dựa trên customer_id
 - Chỉ giữ khách có customer_state = 'RJ'
 - Lấy giá trị nhỏ nhất (MIN) của order_purchase_timestamp
@@ -141,10 +147,11 @@ JOIN orders o
   ON c.customer_id = o.customer_id
 WHERE c.customer_state = 'RJ';
 ```
+
 ![](../assets/results1.3.1.png)
 
 - **Question 2: “When was the last order placed?”**
-Hướng giải quyết
+  Hướng giải quyết
 - JOIN như câu trên
 - Lấy giá trị lớn nhất (MAX) của order_purchase_timestamp
 
@@ -156,15 +163,18 @@ JOIN orders o
   ON c.customer_id = o.customer_id
 WHERE c.customer_state = 'RJ';
 ```
+
 ![](../assets/results1.3.2.png)
 
 - **Question 3: "Does this cover the Black Friday period?"**
-> Có, khoảng thời gian này bao gồm Black Friday của năm 2016 và 2017
 
-- **
+  > Có, khoảng thời gian này bao gồm Black Friday của năm 2016 và 2017
+
+- \*\*
+
 ---
 
-## Task 1.4: The Funnel Audit (Aggregation & Nulls)
+## Problem 1.4: The Funnel Audit (Aggregation & Nulls)
 
 :::note Question
 **Business Value:** Not all orders make it to the customer. We need to see how many orders were actually delivered vs. cancelled or unavailable.
@@ -187,7 +197,7 @@ WHERE c.customer_state = 'RJ';
 :::
 
 - **Question 1: “How many orders in RJ were canceled?”**
-Hướng giải quyết:
+  Hướng giải quyết:
 - JOIN customers (c) với orders (o) qua customer_id
 - Lọc khách hàng ở bang RJ: customer_state = 'RJ'
 - Lọc thêm trạng thái đơn hàng: order_status = 'canceled'
@@ -201,10 +211,11 @@ JOIN orders o
 WHERE c.customer_state = 'RJ'
   AND o.order_status = 'canceled';
 ```
+
 ![](../assets/results1.4.1.png)
 
 - **Question 2: “How many were delivered?”**
-Hướng giải quyết:
+  Hướng giải quyết:
 - JOIN customers (c) với orders (o) qua customer_id
 - Thay điều kiện trạng thái thành order_status = 'delivered'
 
@@ -217,10 +228,11 @@ JOIN orders o
 WHERE c.customer_state = 'RJ'
   AND o.order_status = 'delivered';
 ```
+
 ![](../assets/results1.4.2.png)
 
 - **Question 3: “Are there any statuses where the count is surprisingly high?”**
-Hướng giải quyết:
+  Hướng giải quyết:
 - JOIN bảng customers(c) với orders(o) bằng customer_id
 - Lọc khách sống ở RJ: customer_state = 'RJ'
 - Group theo order_status.
@@ -237,11 +249,12 @@ WHERE c.customer_state = 'RJ'
 GROUP BY o.order_status
 ORDER BY order_count DESC;
 ```
+
 ![](../assets/results1.4.3.png)
 
 ---
 
-## Task 1.5: The "Pulse Check" (3-Table Join)
+## Problem 1.5: The "Pulse Check" (3-Table Join)
 
 :::note Question
 **Business Value:** Now we need the "Voice of the Customer." We need to see the average star rating for these specific orders.
@@ -263,14 +276,14 @@ ORDER BY order_count DESC;
 :::
 
 - **Question 1: "What is the average score for RJ? (Is it below 4.0?)"**
-Hướng giải quyết:
+  Hướng giải quyết:
 - Cần JOIN 3 bảng:
- 1.customers → để lọc khách ở RJ
- 2.orders → để chỉ lấy đơn có order_status = 'delivered'
- 3.order_reviews → để lấy review_score
+  1.customers → để lọc khách ở RJ
+  2.orders → để chỉ lấy đơn có order_status = 'delivered'
+  3.order_reviews → để lấy review_score
 - JOIN qua khóa:
- - customers.customer_id = orders.customer_id
- - orders.order_id = order_reviews.order_id
+- customers.customer_id = orders.customer_id
+- orders.order_id = order_reviews.order_id
 - Lấy trung bình điểm review: AVG(review_score)
 
 ```sql
@@ -288,6 +301,7 @@ WHERE c.customer_state = 'RJ'
 ![](../assets/results1.5.1.png)
 
 - **Question 2: “How does this compare if you remove the 'RJ' filter and look at the whole country?”**
+
 ```sql
 SELECT
   AVG(r.review_score) AS avg_review_score_brazil
@@ -296,6 +310,7 @@ JOIN order_reviews r
   ON o.order_id = r.order_id
 WHERE o.order_status = 'delivered';
 ```
+
 ![](../assets/results1.5.2.png)
 
 ---

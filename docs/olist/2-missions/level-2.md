@@ -2,7 +2,7 @@
 
 ---
 
-## Task 2.1: Data request from Sales
+## Problem 2.1: Data request from Sales
 
 You receive the following email from Sofia, the Regional Sales Manager.
 
@@ -50,7 +50,7 @@ WHERE o.order_status = 'delivered'
 
 **Total Sales for 2017 is: 6,921,535.24**
 
-## Task 2.2 What really is Total Sales?
+## Problem 2.2 What really is Total Sales?
 
 :::info Question
 Is it easy? Do you think: "Too easy hahaha. I'll just sum up the price and the shipping cost."?
@@ -94,13 +94,13 @@ Realized Revenue = sum of `price` in the `order_items` table, but **filter out**
 
 Answer 3: ...
 
-## Task 2.3: Why are they different?
+## Problem 2.3: Why are they different?
 
 :::note Question
 The numbers are different. Why?
 :::
 
-## Task 2.4: Communicating with Sofia
+## Problem 2.4: Communicating with Sofia
 
 :::note Question
 Write a short email to Sofia, ask for clarification.
