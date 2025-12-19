@@ -20,6 +20,7 @@ You receive the following email from Sofia, the Regional Sales Manager.
 :::
 
 **Logic / Approach:**
+
 1.Identify the table that contains sales value:
 
 - Sales value is stored in the order_items table
@@ -76,7 +77,29 @@ Let's look at the database. You have three possible ways to calculate "Total Sal
 Calculate Total Sales as the sum of the `payment_value` from the `payments` table **for all orders made in 2017**.
 :::
 
-Answer 1: ...
+Answer 1: **Total Sales for 2017 is: 7,249,746.73**
+
+**Logic / Approach:**
+
+- Payment amounts are stored in the *order_payments* table (payment_value)
+
+- An order can have multiple payment records, so all payment values must be summed.
+
+- JOIN *orders* table to *order_payments* table using *order_id* to filter by time
+
+- Filter orders placed in 2017 using *orders.order_purchase_timestamp*
+
+```sql
+SELECT
+  SUM(op.payment_value) AS total_sales_payment_2017
+FROM orders o
+JOIN order_payments op
+  ON o.order_id = op.order_id
+WHERE o.order_purchase_timestamp >= '2017-01-01'
+  AND o.order_purchase_timestamp <  '2018-01-01';
+```
+
+![](../assets/results2.2.1.png)
 
 :::note Option 2
 Calculate Total Sales as the Gross Merchandise Value (GMV).
@@ -84,7 +107,31 @@ Calculate Total Sales as the Gross Merchandise Value (GMV).
 GMV = sum of `price` in the `order_items` table **for all orders made in 2017**.
 :::
 
-Answer 2: ...
+Answer 2: **Total Sales for 2017 is: 6,155,806.98**
+
+****Logic / Approach:**
+
+- GMV represents the total value of goods ordered, regardless of delivery outcome
+
+- Item prices are stored in the *order_items* table (price)
+
+- JOIN *orders* table with *order_items* table using *order_id* to filter by time
+
+- Filter orders placed in 2017 using *order.order_purchase_timestamp*
+
+- Sum the price of all items without filtering by order status
+
+```sql
+SELECT
+  SUM(oi.price) AS total_gmv_2017
+FROM orders o
+JOIN order_items oi
+  ON o.order_id = oi.order_id
+WHERE o.order_purchase_timestamp >= '2017-01-01'
+  AND o.order_purchase_timestamp <  '2018-01-01';
+```
+
+![](../assets/results2.2.2.png)
 
 :::note Option 3
 Calculate Total Sales as the Realized Revenue.
@@ -92,7 +139,32 @@ Calculate Total Sales as the Realized Revenue.
 Realized Revenue = sum of `price` in the `order_items` table, but **filter out** orders that were not delivered, **for all orders made in 2017**.
 :::
 
-Answer 3: ...
+Answer 3: **Total Sales for 2017 is: 5,962,902.01**
+
+****Logic / Approach:**
+
+- Realized Revenue includes only sales from orders that were successfully delivered
+
+- Item prices are taken from the *order_items* table (price)
+
+- JOIN *orders* table with *order_items* table using *order_id*
+
+- Filter orders placed in 2017 using *order.order_purchase_timestamp*
+
+- Include only delivered orders by filtering *order_status* = 'delivered'
+
+```sql
+SELECT
+  SUM(oi.price) AS realized_revenue_2017
+FROM orders o
+JOIN order_items oi
+  ON o.order_id = oi.order_id
+WHERE o.order_status = 'delivered'
+  AND o.order_purchase_timestamp >= '2017-01-01'
+  AND o.order_purchase_timestamp <  '2018-01-01';
+```
+
+![](../assets/results2.2.3.png)
 
 ## Problem 2.3: Why are they different?
 
