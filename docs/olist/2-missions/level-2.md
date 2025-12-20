@@ -174,18 +174,15 @@ The numbers are different. Why?
 
 **Answer:**
 
-1. Different order scope
+| Option   | Calculation                  | Filter                                             |
+|----------|------------------------------|----------------------------------------------------|
+| Option 1 | `sum(payment_value)`         | Order date = 2017                                  |
+| Option 2 | GMV by `sum(price)`          | Order date = 2017                                  |
+| Option 3 | `sum(price)`                 | Order date = 2017 AND order status = "delivered"   |
 
-- GMV includes all orders
-
-- Revenue includes only delivered orders
-
-2. Different value components
-
+Note:
 - Payments may include fees or installment interest
-
 - GMV/Revenue include only item prices
-
 
 ## Problem 2.4: Communicating with Sofia
 
