@@ -189,3 +189,23 @@ Note:
 :::note Question
 Write a short email to Sofia, ask for clarification.
 :::
+
+> Hi Sofia,
+> 
+> I have a quick question regarding how we should define Total Sales, and would appreciate your clarification on the following points:
+>
+> 1. What: Should Total Sales represent the total order value or the actual amount paid by customers?
+>
+> 2. How: Should Total Sales be calculated across all order statuses, or only specific statuses (e.g. delivered orders only)?
+> For confirmation, below are the order statuses we currently have. Could you please advise which ones should be included in Total Sales?
+> - created
+> - processing
+> - invoiced
+> - shipped
+> - delivered
+> - canceled
+> - unavailable
+>
+> Thanks a lot for your guidance.
+>
+> Best regards,
