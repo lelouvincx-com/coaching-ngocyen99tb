@@ -172,6 +172,21 @@ WHERE o.order_status = 'delivered'
 The numbers are different. Why?
 :::
 
+**Answer:**
+
+1. Different order scope
+
+- GMV includes all orders
+
+- Revenue includes only delivered orders
+
+2. Different value components
+
+- Payments may include fees or installment interest
+
+- GMV/Revenue include only item prices
+
+
 ## Problem 2.4: Communicating with Sofia
 
 :::note Question
