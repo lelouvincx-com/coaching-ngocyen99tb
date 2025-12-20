@@ -22,3 +22,5 @@ Ting ting! Not the monthly paycheck notification :(, but an email from Kelly, th
 > Please give me the count of how many customers qualify. Thanks!
 
 :::
+
+This time, use updated duckdb file: https://public.lelouvincx.com/brazilian_ecommerce.duckdb
