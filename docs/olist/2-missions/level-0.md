@@ -1,6 +1,6 @@
 # Level 0: Prepare Environment
 
-:::note Question
+:::info Question
 
 Before diving into the missions, ensure you have access to the Olist database. Set up your SQL environment and familiarize yourself with the following datasets.
 

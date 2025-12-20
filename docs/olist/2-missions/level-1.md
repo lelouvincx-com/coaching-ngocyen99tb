@@ -9,7 +9,7 @@ Before you analyze anything, you must locate **who** in the dataset lives in RJ 
 
 ## Problem 1.1: Know Your Audience (Simple Filtering)
 
-:::note Question
+:::info Question
 **Business Value:** Before we analyze behavior, we need to know the size of our cohort in Rio de Janeiro.
 
 - **Goal:** List all customer profiles located in the state of Rio de Janeiro ('RJ').
@@ -65,7 +65,7 @@ ORDER BY n_customers DESC, customer_city;
 
 ## Problem 1.2: The Transaction History (Basic Join)
 
-:::note Question
+:::info Question
 **Business Value:** A customer profile is useless without their purchase history. We need to attach orders to these people.
 
 - **Goal:** Join the Orders table to the Customers table to find every order placed by an RJ customer.
@@ -113,7 +113,7 @@ WHERE c.customer_state = 'RJ';
 
 ## Problem 1.3: The Timeline (Date Handling)
 
-:::note Question
+:::info Question
 **Business Value:** The VP needs to know if this is a recent problem or a historical one. We need to establish the date range of our data.
 
 - **Goal:** Find the date range of all orders placed in RJ.
@@ -176,7 +176,7 @@ WHERE c.customer_state = 'RJ';
 
 ## Problem 1.4: The Funnel Audit (Aggregation & Nulls)
 
-:::note Question
+:::info Question
 **Business Value:** Not all orders make it to the customer. We need to see how many orders were actually delivered vs. cancelled or unavailable.
 
 - **Goal:** Count the number of orders per `order_status` for RJ customers.
@@ -256,7 +256,7 @@ ORDER BY order_count DESC;
 
 ## Problem 1.5: The "Pulse Check" (3-Table Join)
 
-:::note Question
+:::info Question
 **Business Value:** Now we need the "Voice of the Customer." We need to see the average star rating for these specific orders.
 
 - **Goal:** Calculate the average review score for all **delivered** orders in RJ.

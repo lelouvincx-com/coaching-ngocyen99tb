@@ -6,7 +6,7 @@
 
 You receive the following email from Sofia, the Regional Sales Manager.
 
-:::note Email
+:::info Email
 **From**: Sofia (Regional Sales Manager)
 
 **To**: Data Team
@@ -73,7 +73,7 @@ If you rush to answer Sofia, you will likely fall into the Definition Gap.
 Let's look at the database. You have three possible ways to calculate "Total Sales". Can you write the SQL for each of them?
 :::
 
-:::note Option 1
+:::tip Option 1
 Calculate Total Sales as the sum of the `payment_value` from the `payments` table **for all orders made in 2017**.
 :::
 
@@ -81,13 +81,13 @@ Answer 1: **Total Sales for 2017 is: 7,249,746.73**
 
 **Logic / Approach:**
 
-- Payment amounts are stored in the *order_payments* table (payment_value)
+- Payment amounts are stored in the _order_payments_ table (payment_value)
 
 - An order can have multiple payment records, so all payment values must be summed.
 
-- JOIN *orders* table to *order_payments* table using *order_id* to filter by time
+- JOIN _orders_ table to _order_payments_ table using _order_id_ to filter by time
 
-- Filter orders placed in 2017 using *orders.order_purchase_timestamp*
+- Filter orders placed in 2017 using _orders.order_purchase_timestamp_
 
 ```sql
 SELECT
@@ -101,7 +101,7 @@ WHERE o.order_purchase_timestamp >= '2017-01-01'
 
 ![](../assets/results2.2.1.png)
 
-:::note Option 2
+:::tip Option 2
 Calculate Total Sales as the Gross Merchandise Value (GMV).
 
 GMV = sum of `price` in the `order_items` table **for all orders made in 2017**.
@@ -109,15 +109,15 @@ GMV = sum of `price` in the `order_items` table **for all orders made in 2017**.
 
 Answer 2: **Total Sales for 2017 is: 6,155,806.98**
 
-****Logic / Approach:**
+\***\*Logic / Approach:**
 
 - GMV represents the total value of goods ordered, regardless of delivery outcome
 
-- Item prices are stored in the *order_items* table (price)
+- Item prices are stored in the _order_items_ table (price)
 
-- JOIN *orders* table with *order_items* table using *order_id* to filter by time
+- JOIN _orders_ table with _order_items_ table using _order_id_ to filter by time
 
-- Filter orders placed in 2017 using *order.order_purchase_timestamp*
+- Filter orders placed in 2017 using _order.order_purchase_timestamp_
 
 - Sum the price of all items without filtering by order status
 
@@ -133,7 +133,7 @@ WHERE o.order_purchase_timestamp >= '2017-01-01'
 
 ![](../assets/results2.2.2.png)
 
-:::note Option 3
+:::tip Option 3
 Calculate Total Sales as the Realized Revenue.
 
 Realized Revenue = sum of `price` in the `order_items` table, but **filter out** orders that were not delivered, **for all orders made in 2017**.
@@ -141,17 +141,17 @@ Realized Revenue = sum of `price` in the `order_items` table, but **filter out**
 
 Answer 3: **Total Sales for 2017 is: 5,962,902.01**
 
-****Logic / Approach:**
+\***\*Logic / Approach:**
 
 - Realized Revenue includes only sales from orders that were successfully delivered
 
-- Item prices are taken from the *order_items* table (price)
+- Item prices are taken from the _order_items_ table (price)
 
-- JOIN *orders* table with *order_items* table using *order_id*
+- JOIN _orders_ table with _order_items_ table using _order_id_
 
-- Filter orders placed in 2017 using *order.order_purchase_timestamp*
+- Filter orders placed in 2017 using _order.order_purchase_timestamp_
 
-- Include only delivered orders by filtering *order_status* = 'delivered'
+- Include only delivered orders by filtering _order_status_ = 'delivered'
 
 ```sql
 SELECT
@@ -168,37 +168,38 @@ WHERE o.order_status = 'delivered'
 
 ## Problem 2.3: Why are they different?
 
-:::note Question
+:::info Question
 The numbers are different. Why?
 :::
 
 **Answer:**
 
-| Option   | Calculation                  | Filter                                             |
-|----------|------------------------------|----------------------------------------------------|
-| Option 1 | `sum(payment_value)`         | Order date = 2017                                  |
-| Option 2 | GMV by `sum(price)`          | Order date = 2017                                  |
-| Option 3 | `sum(price)`                 | Order date = 2017 AND order status = "delivered"   |
+| Option   | Calculation          | Filter                                           |
+| -------- | -------------------- | ------------------------------------------------ |
+| Option 1 | `sum(payment_value)` | Order date = 2017                                |
+| Option 2 | GMV by `sum(price)`  | Order date = 2017                                |
+| Option 3 | `sum(price)`         | Order date = 2017 AND order status = "delivered" |
 
 Note:
+
 - Payments may include fees or installment interest
 - GMV/Revenue include only item prices
 
 ## Problem 2.4: Communicating with Sofia
 
-:::note Question
+:::info Question
 Write a short email to Sofia, ask for clarification.
 :::
 
 > Hi Sofia,
-> 
+>
 > I have a quick question regarding how we should define Total Sales, and would appreciate your clarification on the following points:
 >
 > 1. What: Should Total Sales represent the total order value or the actual amount paid by customers?
->
 > 2. How: Should Total Sales be calculated across all order statuses, or only specific statuses (e.g. delivered orders only)?
 >
 > For confirmation, below are the order statuses we currently have. Could you please advise which ones should be included in Total Sales?
+>
 > - created
 > - processing
 > - invoiced

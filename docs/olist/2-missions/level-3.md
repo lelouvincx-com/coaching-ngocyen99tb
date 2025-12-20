@@ -6,7 +6,7 @@
 
 Ting ting! Not the monthly paycheck notification :(, but an email from Kelly, the Marketing Director.
 
-:::note Email
+:::info Email
 **From**: Kelly (Marketing Director)
 
 **To**: Data Team
@@ -23,4 +23,6 @@ Ting ting! Not the monthly paycheck notification :(, but an email from Kelly, th
 
 :::
 
-This time, use updated duckdb file: https://public.lelouvincx.com/brazilian_ecommerce.duckdb
+:::tip
+This time, use updated duckdb file: **https://public.lelouvincx.com/brazilian_ecommerce.duckdb**
+:::
