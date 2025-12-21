@@ -4,7 +4,7 @@
 
 Data analysis is iterative. You will make mistakes. You will break code that used to work perfectly yesterday. Git allows you to save "checkpoints" of your work and collaborate with other analysts without overwriting their code.
 
-![](./ln618pt684b71.jpg)
+![](./assets/ln618pt684b71.jpg)
 
 ## Concept
 
@@ -37,4 +37,4 @@ git push
 
 Refer to https://ubunchuu.com/docs/15DFWT/basic-git
 
-![](./maybe-this-is-a-git-repost-v0-qfnbpvj0xhla1.webp)
+![](./assets/maybe-this-is-a-git-repost-v0-qfnbpvj0xhla1.webp)
