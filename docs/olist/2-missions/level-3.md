@@ -26,3 +26,36 @@ Ting ting! Not the monthly paycheck notification :(, but an email from Kelly, th
 :::tip
 This time, use updated duckdb file: **https://public.lelouvincx.com/brazilian_ecommerce.duckdb**
 :::
+
+**Total Repeat Customers is: 0**
+
+**Logic / Approach:**
+
+- A “repeat customer” means a customer who comes back and places more than one order
+
+- In the dataset, each row in orders represents one order, and customers are identified by *customer_id*
+
+- Therefore: repeat customer <=> number of orders per customer > 1.
+
+- To solve this, we:
+
+> 1. Group by *customer_id*
+
+> 2. Count orders for each customer: *COUNT(order_id)*
+
+> 3. Keep customers with *COUNT(order_id)* > 1
+
+```sql
+WITH repeat_customers AS (
+  SELECT
+    customer_id
+  FROM orders
+  GROUP BY customer_id
+  HAVING COUNT(order_id) > 1 )
+SELECT
+  COUNT(*) AS repeat_customer_count
+FROM repeat_customers;
+```
+
+![](../assets/results3.1.png)
+
