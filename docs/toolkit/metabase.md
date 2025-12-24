@@ -2,6 +2,11 @@
 
 ## Example
 
+:::note
+Refresh to load the dashboard.
+http://metabase.lelouvincx.com/public/dashboard/73d21305-875e-4e83-b413-65e110f57519
+:::
+
 <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
   <iframe
     src="http://metabase.lelouvincx.com/public/dashboard/73d21305-875e-4e83-b413-65e110f57519"
