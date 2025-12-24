@@ -31,11 +31,11 @@ This time, use updated duckdb file: **https://public.lelouvincx.com/brazilian_ec
 
 **Logic / Approach:**
 
-- A “repeat customer” means a customer who comes back and places more than one order
+- A "repeat customer" means a customer who comes back and places more than one order
 
 - In the dataset, each row in orders represents one order, and customers are identified by _customer_id_
 
-- Therefore: repeat customer -- number of orders per customer > 1.
+- Therefore: repeat customer = number of orders per customer > 1.
 
 - To solve this, we:
 
@@ -58,3 +58,32 @@ FROM repeat_customers;
 ```
 
 ![](../assets/results3.1.png)
+
+## Problem 3.2: Check
+
+:::info
+I hope before writing a single line of code, you decided to audit the `customers` table to see how it's structured.
+
+Run this query to look at the first few rows of the `customers` table:
+
+```sql
+SELECT *
+FROM customers
+LIMIT 5;
+```
+
+**What do you see?**
+
+You should see 2 different ID columns:
+
+- `customer_id`
+- `customer_unique_id`
+
+Why would a table have two IDs for the same person?
+:::
+
+## Problem 3.3
+
+:::info
+Can you answer the problem 3.1 again?
+:::
