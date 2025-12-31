@@ -17,3 +17,7 @@ http://metabase.lelouvincx.com/public/dashboard/73d21305-875e-4e83-b413-65e110f5
     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
   />
 </div>
+
+## Crash Course
+
+Take this course: https://www.youtube.com/playlist?list=PLzmftu0Z5MYGY0aA3rgIGwSCifECMeuG6
