@@ -82,8 +82,43 @@ You should see 2 different ID columns:
 Why would a table have two IDs for the same person?
 :::
 
+**Answer:**
+
+> A table can have two IDs for the same person because one customer can appear in the system in multiple records  
+> - *customer_id* represents a specific customer record, which may change if the customer creates a new account or updates their information  
+> - *customer_unique_id* represents the actual person, allowing the system to link multiple records to the same customer  
+> Having two IDs helps the business manage transactions correctly while still analyzing customer behavior at the individual level
+
 ## Problem 3.3
 
 :::info
 Can you answer the problem 3.1 again?
 :::
+
+**Answer:**
+
+> After reviewing the customers table, the problem should be solved using *customer_unique_id* instead of *customer_id*, because multiple customer records can belong to the same person. This provides a more accurate view of customer behavior  
+> We want to count repeat customers by person, so we should count by *customer_unique_id*  
+> However, *customer_unique_id* exists only in the customers table  
+> The order history (orders count) is in the orders table  
+> Therefore, we must join orders with customers to link each order to a person:  
+> - Join key: *orders.customer_id* = *customers.customer_id*  
+> - After joining, each order will have a *customer_unique_id*. 
+
+```sql
+WITH repeat_customers AS (
+  SELECT
+   c.customer_unique_id
+  FROM orders o
+  JOIN customers c
+   ON o.customer_id = c.customer_id
+  GROUP BY c.customer_unique_id
+  HAVING COUNT(o.order_id) > 1 )
+SELECT
+  COUNT(*) AS repeat_customer_count
+FROM repeat_customers;
+```
+
+**Total Repeat Customers is: 2,997**
+
+![](../assets/results3.3.png)
