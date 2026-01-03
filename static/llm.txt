@@ -5,7 +5,14 @@ This is an educational documentation website focused on data analysis and SQL le
 
 ## Main Content Areas
 
-### 1. Olist Brazilian E-commerce Project (/docs/olist/)
+### 1. LeetCode SQL50 (/docs/leetcode-sql50/)
+SQL learning materials and problem-solving guides:
+- **SQL Note**: Comprehensive SQL syntax reference in Vietnamese
+  - SELECT, WHERE, JOIN, Aggregate functions, CASE WHEN, etc.
+- **SQL 50 Problems**: Curated collection from LeetCode's top SQL problems
+  - Organized by topics: SELECT, JOINS, Aggregate Functions, Sorting/Grouping, Subqueries, etc.
+
+### 2. Olist Brazilian E-commerce Project (/docs/olist/)
 A comprehensive data analysis project using real Brazilian e-commerce data from Olist.
 - **Overview**: Introduction to the project, Brazil, and Olist company
 - **Dataset**: Documentation of the database schema and relationships
@@ -13,13 +20,6 @@ A comprehensive data analysis project using real Brazilian e-commerce data from 
   - Level 0: Environment setup
   - Level 1: SQL Exploration (filtering, joins, aggregations, date handling)
   - Each task includes business context, goals, hints, and success criteria
-
-### 2. LeetCode SQL50 (/docs/leetcode-sql50/)
-SQL learning materials and problem-solving guides:
-- **SQL Note**: Comprehensive SQL syntax reference in Vietnamese
-  - SELECT, WHERE, JOIN, Aggregate functions, CASE WHEN, etc.
-- **SQL 50 Problems**: Curated collection from LeetCode's top SQL problems
-  - Organized by topics: SELECT, JOINS, Aggregate Functions, Sorting/Grouping, Subqueries, etc.
 
 ## Target Audience
 - Junior data analysts
@@ -47,8 +47,8 @@ SQL learning materials and problem-solving guides:
 5. Use the progressive difficulty approach when teaching
 
 ## Data Source
-- Olist database: https://public.lelouvincx.com/brazilian_ecommerce.duckdb
 - LeetCode problems: https://leetcode.com/studyplan/top-sql-50/
+- Olist database: https://public.lelouvincx.com/brazilian_ecommerce.duckdb
 
 ## Sitemap
 https://ngocyen99tb.lelouvincx.com/sitemap.xml
