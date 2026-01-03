@@ -3,6 +3,6 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "A morning coffee dashboard to monitor sales performance."
+    "description": "A morning coffee dashboard to monitor sales performance. Before taking this module, make sure you learn a BI tool first (Metabase)."
   }
 }
