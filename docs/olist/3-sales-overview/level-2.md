@@ -15,6 +15,19 @@ Deliverable:
   - Name: `Trend - Monthly Revenue`
   - Description
 
+```sql
+SELECT
+  DATE_TRUNC('month', o.order_purchase_timestamp) AS month,
+  SUM(op.payment_value) AS monthly_revenue
+FROM orders o
+JOIN order_payments op
+  ON o.order_id = op.order_id
+WHERE o.order_status = 'delivered'
+GROUP BY 1;
+```
+
+![](../assets/trend-monthly-revenue.png)
+
 :::
 
 ## Problem 2
