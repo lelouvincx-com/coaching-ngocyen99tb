@@ -24,3 +24,29 @@ This time, **save it as Metabase's questions**:
   - Description
 
 :::
+
+**Logic / Approach:**
+- Processed orders include orders with the *order_status* of "shipped" or "delivered", and "canceled" orders that have a non-null *order_delivered_carrier_date*
+
+![](../assets/processed%20order.jpeg)
+
+```sql
+SELECT
+  COUNT(DISTINCT order_id) AS total_processed_orders
+FROM orders
+WHERE order_status IN ('shipped', 'delivered')
+  OR (order_status = 'canceled'
+  AND order_delivered_carrier_date IS NOT NULL);
+```
+![](../assets/total%20orders.png)
+
+- Total revenue is calculated as the actual amount received from customers, based on *payment_value*
+
+```sql
+SELECT
+  SUM(op.payment_value) AS total_revenue
+FROM orders o
+JOIN order_payments op ON o.order_id = op.order_id
+WHERE o.order_status = 'delivered';
+```
+![](../assets/total%20revenue%20card.png)
